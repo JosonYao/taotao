@@ -1,13 +1,13 @@
 $(function(){
     //indexBanner轮播图
-    dslide('indexSwiper','.box .banner','.box .banner .libs','.box .banner .tabs .right','.box .banner .tabs .left','1','3000');
+    dslide('indexSwiper','.boxWrap .banner','.boxWrap .banner .libs','.boxWrap .banner .tabs .right','.boxWrap .banner .tabs .left','1','3000');
        
 
     /*鼠标移入停止轮播，鼠标离开 继续轮播*/
-    $('.box .banner').hover(function(){
-        $('.box .banner .tabs .btn').css('opacity','1');
+    $('.boxWrap .banner').hover(function(){
+        $('.boxWrap .banner .tabs .btn').css('opacity','1');
     },function(){
-        $('.box .banner .tabs .btn').css('opacity','.1');
+        $('.boxWrap .banner .tabs .btn').css('opacity','.1');
     });
 
     // 公告
@@ -15,10 +15,8 @@ $(function(){
     
 
     //Doctor
-    dslide('doctor','.doctor .cont .items #els .box','','.doctor .cont .items #els .right','.doctor .cont .items #els .left','4','2500');
-
-    //dslide('doctor2','.doctor .cont .items #tg .box','.doctor .cont .items #tg .right','.doctor .cont .items #tg .left','4','3000');
-    //dslide('doctor3','.doctor .cont .items #bld .box','.doctor .cont .items #bld .right','.doctor .cont .items #bld .left','4','3000');
+    dslide('doctor','.doctor .cont .items #els .box','','.doctor .cont .items #els .right','.doctor .cont .items #els .left','auto','3000');
+    
     
     ShowHidden('.doctor .cont .tab','click','span','.doctor .cont .items .item');
     ShowHidden('.main .doctor .tab','click','span','.main .doctor .items .item');
@@ -43,11 +41,18 @@ $(function(){
         });
     }
 
-    function ShowHidden($s1,event,label,$s2){
+    function ShowHidden($s1,event,label,$s2,fun){
         $($s1).on(event,label,function(){
             jQuery(this).addClass("on").siblings().removeClass('on');
             var i = jQuery(this).index();
+            console.log(i);
             $($s2).eq(i).addClass("on").siblings().removeClass('on');
-        })
+            if(i==1){
+                dslide('doctor2','.doctor .cont .items #tg .box','','.doctor .cont .items #tg .right','.doctor .cont .items #tg .left','auto','3000');
+            }
+            if(i==2){
+                dslide('doctor3','.doctor .cont .items #bld .box','','.doctor .cont .items #bld .right','.doctor .cont .items #bld .left','auto','3000');
+            }
+        });
     }
 });
